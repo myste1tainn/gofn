@@ -1,4 +1,4 @@
-package fn
+package gofn
 
 func Map[A any, B any](items []A, transform func(item A) B) []B {
 	var b []B

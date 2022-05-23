@@ -1,4 +1,4 @@
-package fn
+package gofn
 
 type Block struct {
 	run     func()

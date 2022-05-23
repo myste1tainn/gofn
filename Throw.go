@@ -1,4 +1,4 @@
-package fn
+package gofn
 
 func Throw(errs ...error) {
 	for _, err := range errs {

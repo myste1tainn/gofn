@@ -1,4 +1,4 @@
-package fn
+package gofn
 
 func Coalesce[Obj any](objs ...*Obj) *Obj {
 	for _, obj := range objs {
