@@ -1,5 +1,7 @@
 package gofn
 
+import "fmt"
+
 func Map[A any, B any](items []A, transform func(item A) B) []B {
 	var b []B
 	for _, item := range items {
@@ -17,4 +19,8 @@ func FlatMap[A any, B any](items []A, transform func(item A) *B) []B {
 		}
 	}
 	return bs
+}
+
+func ToString[Item any](item Item) string {
+    return fmt.Sprintf("%s", item)
 }
