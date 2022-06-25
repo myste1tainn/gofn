@@ -22,5 +22,5 @@ func FlatMap[A any, B any](items []A, transform func(item A) *B) []B {
 }
 
 func ToString[Item any](item Item) string {
-    return fmt.Sprintf("%s", item)
+	return fmt.Sprintf("%v", item)
 }

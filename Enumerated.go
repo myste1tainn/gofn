@@ -14,8 +14,8 @@ func EnumerateArray[Item any](items []Item) []Enumerated[Item] {
 }
 
 func Enumerate[Item any](i int, item Item) Enumerated[Item] {
-		return Enumerated[Item]{
-			Index: i,
-			Item:  item,
-		}
+	return Enumerated[Item]{
+		Index: i,
+		Item:  item,
+	}
 }
