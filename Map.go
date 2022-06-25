@@ -2,23 +2,42 @@ package gofn
 
 import "fmt"
 
-func Map[A any, B any](items []A, transform func(item A) B) []B {
-	var b []B
-	for _, item := range items {
-		b = append(b, transform(item))
+func Map[Item any, Result any](items []Item, transform func(item Item, index int) Result) []Result {
+	var results []Result
+	for index, item := range items {
+		results = append(results, transform(item, index))
 	}
-	return b
+	return results
 }
 
-func FlatMap[A any, B any](items []A, transform func(item A) *B) []B {
-	var bs []B
-	for _, item := range items {
-		b := transform(item)
-		if b != nil {
-			bs = append(bs, *b)
+func FlatMap[Item any, Result any](items []Item, transform func(item Item, index int) *Result) []Result {
+	var results []Result
+	for index, item := range items {
+		result := transform(item, index)
+		if result != nil {
+			results = append(results, *result)
 		}
 	}
-	return bs
+	return results
+}
+
+func MapOfMap[Key comparable, Item any, Result any](items map[Key]Item, transform func(item Item, key Key) Result) map[Key]Result {
+	var result map[Key]Result
+	for key, item := range items {
+		result[key] = transform(item, key)
+
+	}
+	return result
+}
+
+func FlatMapMapOfMap[Key comparable, Item any, Result any](items map[Key]Item, transform func(item Item, key Key) *Result) map[Key]Result {
+	var result map[Key]Result
+	for key, item := range items {
+		res := transform(item, key)
+		result[key] = *res
+
+	}
+	return result
 }
 
 func ToString[Item any](item Item) string {
